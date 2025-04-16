@@ -2,6 +2,7 @@ const dotenv = require ('dotenv');
 const express = require ('express');
 const cors = require ('cors');
 const database = require ('./config/connectDB');
+const donationRoutes = require("./routes/donationRoutes");
 
 dotenv.config();
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.json());
 // Database connection
 database.connectDB();
 
+app.use("/api/v1", donationRoutes);
 const PORT = process.env.PORT || 1000;
 
 app.listen(PORT, () => {
